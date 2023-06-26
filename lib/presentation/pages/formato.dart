@@ -1,7 +1,9 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ucamp_project_3_travel_app/page1.dart';
+
+import 'package:ucamp_project_3_travel_app/app/widgets/appbar.dart';
+import 'package:ucamp_project_3_travel_app/app/widgets/bottom_navigation_bar.dart';
+import 'package:ucamp_project_3_travel_app/presentation/pages/menu.dart';
 import 'package:intl/intl.dart';
 
 class Formato extends StatefulWidget {
@@ -17,6 +19,7 @@ class _FormatoState extends State<Formato> {
 
 //DATA TO PICK DESTINATION AFTER RETRIEVE FROM PREVIOUS PAGE
   var value = 0;
+  // ignore: prefer_typing_uninitialized_variables
   var _index;
   //INITIALIZE INDEX OF THE LIST
   @override
@@ -84,100 +87,8 @@ class _FormatoState extends State<Formato> {
       top: true,
       bottom: true,
       child: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-            size: 15,
-          ),
-          backgroundColor: const Color(0xffFAEEDD),
-          actions: <Widget>[
-//TEXT//
-            const Padding(
-                padding: EdgeInsets.only(top: 20, right: 50),
-                child: Text(
-                  'Booking Form',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                )),
-//ICON EMAIL//
-            IconButton(
-                onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          title: const Text('e-mail:',
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              )),
-                          content: const Text(
-                            'travel@officejoe.com',
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: const Color(0xff703232)),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text(
-                                'Close',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            )
-                          ]),
-                    ),
-                icon: const Icon(
-                  Icons.email,
-                  color: Colors.black,
-                )),
-//ICON PHONE///
-            IconButton(
-                onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          title: const Text('phone:',
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              )),
-                          content: const Text(
-                            '+55021236',
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                    backgroundColor: const Color(0xff703232)),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text(
-                                  'Close',
-                                  style: TextStyle(color: Colors.white),
-                                ))
-                          ]),
-                    ),
-                icon: const Icon(
-                  Icons.phone,
-                  color: Colors.black,
-                )),
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -315,7 +226,7 @@ class _FormatoState extends State<Formato> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const Page1()),
+                                        builder: (context) => const Menu()),
                                   );
                                 }),
                                 child: const Text(
@@ -387,29 +298,29 @@ class _FormatoState extends State<Formato> {
                   ]),
             )),
 //BOTTOM NAVIGAION BAR//
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color(0xffFAEEDD),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.facebook,
-                  color: Colors.black,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.instagram,
-                  color: Colors.black,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.twitter,
-                  color: Colors.black,
-                ),
-                label: ''),
-          ],
-        ),
+        bottomNavigationBar: BottomNavigationBarGeneral(),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   backgroundColor: const Color(0xffFAEEDD),
+        //   items: const <BottomNavigationBarItem>[
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.facebook,
+        //           color: Colors.black,
+        //         ),
+        //         label: ''),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.instagram,
+        //           color: Colors.black,
+        //         ),
+        //         label: ''),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.twitter,
+        //           color: Colors.black,
+        //         ),
+        //         label: ''),
+        //  ],
       ),
     );
   }

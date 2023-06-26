@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ucamp_project_3_travel_app/page1.dart';
+import 'package:ucamp_project_3_travel_app/presentation/pages/menu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -115,8 +115,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Page1()),
+                          MaterialPageRoute(builder: (context) => const Menu()),
                         );
                       },
                       icon: Image.asset('lib/assets/Group 6.png'),

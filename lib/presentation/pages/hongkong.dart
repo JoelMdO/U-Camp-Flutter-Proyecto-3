@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:ucamp_project_3_travel_app/formato.dart';
-import 'package:ucamp_project_3_travel_app/page1.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ucamp_project_3_travel_app/app/widgets/appbar.dart';
+import 'package:ucamp_project_3_travel_app/app/widgets/bottom_navigation_bar.dart';
+import 'package:ucamp_project_3_travel_app/presentation/pages/formato.dart';
+import 'package:ucamp_project_3_travel_app/presentation/pages/menu.dart';
 import 'package:like_button/like_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 
-class Miami extends StatefulWidget {
-  const Miami({Key? key}) : super(key: key);
+class Hongkong extends StatefulWidget {
+  const Hongkong({Key? key}) : super(key: key);
 
   @override
-  State<Miami> createState() => _MiamiState();
+  State<Hongkong> createState() => _HongkongState();
 }
 
-class _MiamiState extends State<Miami> {
+class _HongkongState extends State<Hongkong> {
 //TRIGGER ANIMATION//
   bool selected = false;
-  bool selected1 = false;
-  bool selected2 = false;
-  bool selected3 = false;
 
   @override
   void initState() {
@@ -38,89 +36,8 @@ class _MiamiState extends State<Miami> {
       bottom: true,
       child: Scaffold(
 //APP BAR//
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-            size: 15,
-          ),
-          backgroundColor: const Color(0xffFAEEDD),
-          actions: <Widget>[
-//ICON EMAIL//
-            IconButton(
-                onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          title: const Text('e-mail:',
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              )),
-                          content: const Text(
-                            'travel@officejoe.com',
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: const Color(0xff703232)),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text(
-                                'Close',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            )
-                          ]),
-                    ),
-                icon: const Icon(
-                  Icons.email,
-                  color: Colors.black,
-                )),
-//ICON PHONE///
-            IconButton(
-                onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          title: const Text('phone:',
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              )),
-                          content: const Text(
-                            '+55021236',
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                    backgroundColor: const Color(0xff703232)),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text(
-                                  'Close',
-                                  style: TextStyle(color: Colors.white),
-                                ))
-                          ]),
-                    ),
-                icon: const Icon(
-                  Icons.phone,
-                  color: Colors.black,
-                )),
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -138,21 +55,21 @@ class _MiamiState extends State<Miami> {
                             width: 350,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('lib/assets/Group 3.png')),
+                                  image: AssetImage('lib/assets/Group 4.png')),
                             )))),
 //CIRCLE AVATAR//
                 const Positioned(
                     left: 20,
                     top: 70,
                     child: Hero(
-                      tag: 'Hero3',
+                      tag: 'Hero4',
                       child: CircleAvatar(
                           radius: 135,
                           backgroundColor: Colors.black,
                           child: CircleAvatar(
                               radius: 130,
                               backgroundImage:
-                                  AssetImage('lib/assets/SPORTS.png'))),
+                                  AssetImage('lib/assets/FAMILY.png'))),
                     )),
 //LIKE BUTTON//
                 Positioned(
@@ -201,7 +118,8 @@ class _MiamiState extends State<Miami> {
                   curve: Curves.easeInCubic,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: (AssetImage('lib/assets/Title Miami.png')))),
+                          image:
+                              (AssetImage('lib/assets/Title Hongkong.png')))),
                 ), // This trailing comma makes auto-formatting nicer for build methods.
 //FACTS//
                 Positioned(
@@ -235,7 +153,7 @@ class _MiamiState extends State<Miami> {
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 TypewriterAnimatedText(
-                                  '- Only city with all sports:\n\n - From F1, Soccer, Football,\n  basketball.. you named it. \n\n - Plus best shopping malls, culinary\n international food\n etc. ',
+                                  '- Disneyland a place for all ages.\n\n - Facilities and transportation\n to make your visit easy as even\n you will wish to have a baby stroller.\n\n - Shopping and food for all tastes.',
                                   textStyle: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
@@ -250,7 +168,7 @@ class _MiamiState extends State<Miami> {
                     top: 560,
                     left: 125,
                     child: DelayedDisplay(
-                        delay: const Duration(seconds: 16),
+                        delay: const Duration(seconds: 17),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
@@ -264,7 +182,7 @@ class _MiamiState extends State<Miami> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const Page1()),
+                                        builder: (context) => const Menu()),
                                   );
                                 }),
                                 child: const Text(
@@ -283,13 +201,14 @@ class _MiamiState extends State<Miami> {
                                             color: Color(0xff880B0B),
                                             width: 2.0)),
                                     onPressed: () async {
-                                      //SEND A VALUE TO LOAD IMAGE ON BOOKING FORM PAGE
+//SEND A VALUE TO LOAD IMAGE ON BOOKING FORM PAGE
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const Formato()));
                                       setState(() {
-                                        var value = 1;
+                                        // ignore: unused_local_variable
+                                        var value = 4;
                                       });
                                     },
                                     child: const Text(
@@ -301,29 +220,7 @@ class _MiamiState extends State<Miami> {
               ]),
         ),
 //BOTTOM NAVIGAION BAR//
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color(0xffFAEEDD),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.facebook,
-                  color: Colors.black,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.instagram,
-                  color: Colors.black,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.twitter,
-                  color: Colors.black,
-                ),
-                label: ''),
-          ],
-        ),
+        bottomNavigationBar: BottomNavigationBarGeneral(),
       ),
     );
   }
