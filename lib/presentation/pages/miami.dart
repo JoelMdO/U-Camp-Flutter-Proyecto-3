@@ -8,7 +8,8 @@ import 'package:like_button/like_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 
 class Miami extends StatefulWidget {
-  const Miami({Key? key}) : super(key: key);
+  final String pagegeneral;
+  const Miami({Key? key, required this.pagegeneral}) : super(key: key);
 
   @override
   State<Miami> createState() => _MiamiState();
@@ -30,15 +31,21 @@ class _MiamiState extends State<Miami> {
   }
 
   @override
+  void dispose() {
+    selected;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        top: true,
-        bottom: true,
-        child: Scaffold(
+    return Scaffold(
 //APP BAR//
-          appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
-          body: SizedBox(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
+      body: SafeArea(
+          top: true,
+          bottom: true,
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Stack(
@@ -47,7 +54,7 @@ class _MiamiState extends State<Miami> {
                 children: <Widget>[
 //BROWN BACKGROUND//
                   Positioned(
-                      top: 180,
+                      top: 160,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
                           child: Container(
@@ -61,7 +68,7 @@ class _MiamiState extends State<Miami> {
 //CIRCLE AVATAR//
                   const Positioned(
                       left: 20,
-                      top: 70,
+                      top: 50,
                       child: Hero(
                         tag: 'Hero3',
                         child: CircleAvatar(
@@ -74,7 +81,7 @@ class _MiamiState extends State<Miami> {
                       )),
 //LIKE BUTTON//
                   Positioned(
-                      top: 340,
+                      top: 320,
                       left: 300,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
@@ -123,7 +130,7 @@ class _MiamiState extends State<Miami> {
                   ), // This trailing comma makes auto-formatting nicer for build methods.
 //FACTS//
                   Positioned(
-                      top: 340,
+                      top: 320,
                       left: 10,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
@@ -144,7 +151,7 @@ class _MiamiState extends State<Miami> {
                               })))),
 //TEXT//
                   Positioned(
-                      top: 400,
+                      top: 380,
                       left: 10,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 4),
@@ -154,7 +161,7 @@ class _MiamiState extends State<Miami> {
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
-                                    '- Only city with all sports:\n\n - From F1, Soccer, Football,\n  basketball.. you named it. \n\n - Plus best shopping malls, culinary\n international food\n etc. ',
+                                    '- ${widget.pagegeneral}:\n\n - From F1, Soccer, Football,\n  basketball.. you named it. \n\n - Plus best shopping malls, culinary\n international food\n etc. ',
                                     textStyle: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500),
@@ -166,7 +173,7 @@ class _MiamiState extends State<Miami> {
                               )))),
 //BUTTONS//
                   Positioned(
-                      top: 560,
+                      top: 530,
                       right: 15,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 16),
@@ -220,10 +227,10 @@ class _MiamiState extends State<Miami> {
                             ],
                           )))
                 ]),
-          ),
+          )),
 //BOTTOM NAVIGAION BAR//
-          bottomNavigationBar:
-              SizedBox(height: 35, child: BottomNavigationBarGeneral()),
-        ));
+      bottomNavigationBar:
+          SizedBox(height: 35, child: BottomNavigationBarGeneral()),
+    );
   }
 }

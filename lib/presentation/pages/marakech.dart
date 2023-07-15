@@ -8,7 +8,8 @@ import 'package:like_button/like_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 
 class Marrakech extends StatefulWidget {
-  const Marrakech({Key? key}) : super(key: key);
+  final String pagegeneral;
+  const Marrakech({Key? key, required this.pagegeneral}) : super(key: key);
 
   @override
   State<Marrakech> createState() => _MarrakechState();
@@ -30,15 +31,21 @@ class _MarrakechState extends State<Marrakech> {
   }
 
   @override
+  void dispose() {
+    selected;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        top: true,
-        bottom: true,
-        child: Scaffold(
+    return Scaffold(
 //APP BAR//
-          appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
-          body: SizedBox(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(35), child: AppBarGeneral()),
+      body: SafeArea(
+          top: true,
+          bottom: true,
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Stack(
@@ -47,7 +54,7 @@ class _MarrakechState extends State<Marrakech> {
                 children: <Widget>[
 //BROWN BACKGROUND//
                   Positioned(
-                      top: 180,
+                      top: 160,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
                           child: Container(
@@ -61,7 +68,7 @@ class _MarrakechState extends State<Marrakech> {
 //CIRCLE AVATAR//
                   const Positioned(
                       left: 20,
-                      top: 70,
+                      top: 50,
                       child: Hero(
                         tag: 'Hero2',
                         child: CircleAvatar(
@@ -74,7 +81,7 @@ class _MarrakechState extends State<Marrakech> {
                       )),
 //LIKE BUTTON//
                   Positioned(
-                      top: 340,
+                      top: 320,
                       left: 300,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
@@ -124,7 +131,7 @@ class _MarrakechState extends State<Marrakech> {
                   ), // This trailing comma makes auto-formatting nicer for build methods.
 //FACTS//
                   Positioned(
-                      top: 340,
+                      top: 320,
                       left: 10,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 3),
@@ -145,7 +152,7 @@ class _MarrakechState extends State<Marrakech> {
                               })))),
 //TEXT//
                   Positioned(
-                      top: 400,
+                      top: 380,
                       left: 10,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 4),
@@ -155,7 +162,7 @@ class _MarrakechState extends State<Marrakech> {
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
-                                    '- The flavors of the Arab culture.\n\n - Unique walking\'s through their\n  souq\'s, desert and mountains. \n\n - Sleep in a classic Riad.',
+                                    '- ${widget.pagegeneral}.\n\n - Unique walking\'s through their\n  souq\'s, desert and mountains. \n\n - Sleep in a classic Riad.',
                                     textStyle: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500),
@@ -167,7 +174,7 @@ class _MarrakechState extends State<Marrakech> {
                               )))),
 //BUTTONS//
                   Positioned(
-                      top: 550,
+                      top: 530,
                       right: 15,
                       child: DelayedDisplay(
                           delay: const Duration(seconds: 15),
@@ -221,10 +228,10 @@ class _MarrakechState extends State<Marrakech> {
                             ],
                           )))
                 ]),
-          ),
+          )),
 //BOTTOM NAVIGAION BAR//
-          bottomNavigationBar:
-              SizedBox(height: 35, child: BottomNavigationBarGeneral()),
-        ));
+      bottomNavigationBar:
+          SizedBox(height: 35, child: BottomNavigationBarGeneral()),
+    );
   }
 }

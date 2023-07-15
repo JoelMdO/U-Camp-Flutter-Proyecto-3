@@ -31,13 +31,19 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void dispose() {
+    selected;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        top: true,
-        bottom: true,
-        child: Scaffold(
-          backgroundColor: const Color(0xffFAEEDD),
-          body: Stack(
+    return Scaffold(
+        backgroundColor: const Color(0xffFAEEDD),
+        body: SafeArea(
+          top: true,
+          bottom: true,
+          child: Stack(
               fit: StackFit.loose,
               alignment: AlignmentDirectional.topStart,
               children: <Widget>[
@@ -104,6 +110,7 @@ class _HomeState extends State<Home> {
                       image: AssetImage('lib/assets/Airplane.png'),
                     )),
 //EXPLORE BUTTON//
+
                 AnimatedPositioned(
                     width: selected1 ? 510.0 : 0.0,
                     height: selected1 ? 570.0 : 0.0,
