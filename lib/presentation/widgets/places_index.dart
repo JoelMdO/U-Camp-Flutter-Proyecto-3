@@ -7,15 +7,31 @@ import 'package:ucamp_project_3_travel_app/presentation/pages/menu.dart';
 import 'package:like_button/like_button.dart';
 import 'package:delayed_display/delayed_display.dart';
 
-class Maldives extends StatefulWidget {
-  final String pagegeneral;
-  const Maldives({Key? key, required this.pagegeneral}) : super(key: key);
+class PlacesIndex extends StatefulWidget {
+  final String pagename,
+      pagenamespanish,
+      background,
+      title,
+      hero,
+      herotag,
+      text;
+
+  const PlacesIndex({
+    Key? key,
+    required this.pagename,
+    required this.pagenamespanish,
+    required this.background,
+    required this.title,
+    required this.hero,
+    required this.herotag,
+    required this.text,
+  }) : super(key: key);
 
   @override
-  State<Maldives> createState() => _MaldivesState();
+  State<PlacesIndex> createState() => _PlacesIndexState();
 }
 
-class _MaldivesState extends State<Maldives> {
+class _PlacesIndexState extends State<PlacesIndex> {
 //TRIGGER ANIMATION//
   bool selected = false;
 
@@ -60,24 +76,22 @@ class _MaldivesState extends State<Maldives> {
                             child: Container(
                                 height: 500,
                                 width: 350,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: AssetImage(
-                                          'lib/assets/MaldBlue.png')),
+                                      image: AssetImage(widget.background)),
                                 )))),
 //CIRCLE AVATAR//
-                    const Positioned(
+                    Positioned(
                         left: 20,
                         top: 50,
                         child: Hero(
-                          tag: 'Hero1',
+                          tag: widget.herotag,
                           child: CircleAvatar(
                               radius: 135,
                               backgroundColor: Colors.black,
                               child: CircleAvatar(
                                   radius: 130,
-                                  backgroundImage:
-                                      AssetImage('lib/assets/MLE.png'))),
+                                  backgroundImage: AssetImage(widget.hero))),
                         )),
 //LIKE BUTTON//
                     Positioned(
@@ -125,9 +139,9 @@ class _MaldivesState extends State<Maldives> {
                       height: selected ? 150 : 0.0,
                       duration: const Duration(seconds: 1),
                       curve: Curves.easeInCubic,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: (AssetImage('lib/assets/Title.png')))),
+                              image: (AssetImage(widget.title)))),
                     ), // This trailing comma makes auto-formatting nicer for build methods.
 //FACTS//
                     Positioned(
@@ -162,7 +176,7 @@ class _MaldivesState extends State<Maldives> {
                                 child: AnimatedTextKit(
                                   animatedTexts: [
                                     TypewriterAnimatedText(
-                                      '- ${widget.pagegeneral} to reach your hotel.\n\n - Sleep surrounded by two oceans, the only land \n  is where your hotel is placed.\n\n - Categorized as the 5 best sunsets in the world.',
+                                      widget.text,
                                       textStyle: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500),

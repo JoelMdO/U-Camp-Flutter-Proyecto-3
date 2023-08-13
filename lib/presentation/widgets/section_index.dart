@@ -1,9 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:ucamp_project_3_travel_app/presentation/pages/hongkong.dart';
-import 'package:ucamp_project_3_travel_app/presentation/pages/maldives.dart';
-import 'package:ucamp_project_3_travel_app/presentation/pages/marakech.dart';
-import 'package:ucamp_project_3_travel_app/presentation/pages/miami.dart';
+import 'package:ucamp_project_3_travel_app/presentation/widgets/places_index.dart';
 
 class SectionsIndex extends StatefulWidget {
   final String pagename,
@@ -30,7 +27,6 @@ class SectionsIndex extends StatefulWidget {
 
 class _SectionsIndexState extends State<SectionsIndex> {
   bool selected = false;
-
 //DELAY TO START FOR FIRST ANIMATION//
   @override
   void initState() {
@@ -41,6 +37,91 @@ class _SectionsIndexState extends State<SectionsIndex> {
     });
     super.initState();
   }
+
+//MAP FOR PAGE SELECTION
+  //MAP FOR PAGE SELECTION
+  final Map<String, Widget Function(String)> pageRoutes = {
+    'BEACH': (title) => const PlacesIndex(
+          pagename: 'BEACH',
+          pagenamespanish: 'PLAYA',
+          background: 'lib/assets/MaldBlue.png',
+          title: 'lib/assets/Title.png',
+          herotag: 'Hero1',
+          hero: 'lib/assets/MLE.png',
+          text:
+              '- Adventure to take a seaplane to reach your hotel.\n\n - Sleep surrounded by two oceans, the only land \n  is where your hotel is placed.\n\n - Categorized as the 5 best sunsets in the world.',
+        ),
+    'PLAYA': (title) => const PlacesIndex(
+          pagename: 'BEACH',
+          pagenamespanish: 'PLAYA',
+          background: 'lib/assets/MaldBlue.png',
+          title: 'lib/assets/Title.png',
+          herotag: 'Hero1',
+          hero: 'lib/assets/MLE.png',
+          text:
+              '- Adventure to take a seaplane to reach your hotel.\n\n - Sleep surrounded by two oceans, the only land \n  is where your hotel is placed.\n\n - Categorized as the 5 best sunsets in the world.',
+        ),
+    'CULTURE': (title) => const PlacesIndex(
+          pagename: 'CULTURE',
+          pagenamespanish: 'CULTURAL',
+          background: 'lib/assets/Group 2.png',
+          title: 'lib/assets/Title Marrakech.png',
+          herotag: 'Hero2',
+          hero: 'lib/assets/RAK.png',
+          text:
+              'The flavors of the Arab culture\n\n - Unique walking\'s through their\n  souq\'s, desert and mountains. \n\n - Sleep in a classic Riad.',
+        ),
+    'CULTURAL': (title) => const PlacesIndex(
+          pagename: 'CULTURE',
+          pagenamespanish: 'CULTURAL',
+          background: 'lib/assets/Group 2.png',
+          title: 'lib/assets/Title Marrakech.png',
+          herotag: 'Hero2',
+          hero: 'lib/assets/RAK.png',
+          text:
+              'The flavors of the Arab culture\n\n - Unique walking\'s through their\n  souq\'s, desert and mountains. \n\n - Sleep in a classic Riad.',
+        ),
+    'FAMILY': (title) => const PlacesIndex(
+          pagename: 'FAMILY',
+          pagenamespanish: 'EN FAMILIA',
+          background: 'lib/assets/Group 4.png',
+          title: 'lib/assets/Title Hongkong.png',
+          herotag: 'Hero3',
+          hero: 'lib/assets/FAMILY.png',
+          text:
+              'The Far East Disneyland a place for all ages.\n\n - Facilities and transportation to make your visit\n easy even with a baby stroller.\n\n - Shopping and food for all tastes.',
+        ),
+    'EN FAMILIA': (title) => const PlacesIndex(
+          pagename: 'FAMILY',
+          pagenamespanish: 'EN FAMILIA',
+          background: 'lib/assets/Group 4.png',
+          title: 'lib/assets/Title Hongkong.png',
+          herotag: 'Hero3',
+          hero: 'lib/assets/FAMILY.png',
+          text:
+              ' The Far East Disneyland a place for all ages.\n\n - Facilities and transportation to make your visit\n easy even with a baby stroller.\n\n - Shopping and food for all tastes.',
+        ),
+    'SPORTIVE': (title) => const PlacesIndex(
+          pagename: 'SPORTIVE',
+          pagenamespanish: 'DEPORTIVO',
+          background: 'lib/assets/Group 3.png',
+          title: 'lib/assets/Title Miami.png',
+          herotag: 'Hero4',
+          hero: 'lib/assets/SPORTS.png',
+          text:
+              'A city with all the sports:\n\n - From F1, Soccer, Football,\n  basketball.. you named it. \n\n - Plus best shopping malls, culinary\n international food\n etc. ',
+        ),
+    'DEPORTIVO': (title) => const PlacesIndex(
+          pagename: 'SPORTIVE',
+          pagenamespanish: 'DEPORTIVO',
+          background: 'lib/assets/Group 3.png',
+          title: 'lib/assets/Title Miami.png',
+          herotag: 'Hero4',
+          hero: 'lib/assets/SPORTS.png',
+          text:
+              'A city with all the sports:\n\n - From F1, Soccer, Football,\n  basketball.. you named it. \n\n - Plus best shopping malls, culinary\n international food\n etc. ',
+        ),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -55,49 +136,24 @@ class _SectionsIndexState extends State<SectionsIndex> {
         decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(widget.background))),
         child: InkWell(
-            onTap: (() {
-              if (widget.pagename == 'BEACH' || widget.pagename == 'PLAYA') {
+            onTap: () {
+              final destinationBuilder = pageRoutes[widget.pagename];
+              if (destinationBuilder != null) {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Maldives(
-                            pagegeneral: widget.pagegeneral,
-                          )),
-                );
-              } else if (widget.pagename == 'CULTURE' ||
-                  widget.pagename == 'CULTURAL') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Marrakech(
-                            pagegeneral: widget.pagegeneral,
-                          )),
-                );
-              } else if (widget.pagename == 'FAMILY' ||
-                  widget.pagename == 'EN FAMILIA') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Hongkong(
-                            pagegeneral: widget.pagegeneral,
-                          )),
-                );
-              } else if (widget.pagename == 'SPORTIVE' ||
-                  widget.pagename == 'DEPORTIVO') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Miami(
-                            pagegeneral: widget.pagegeneral,
-                          )),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            destinationBuilder(widget.title)));
               }
-            }),
+            },
+
+            /// THIS IS THE STACK WHERE EACH ITEM OF THE MENU IS CREATED
+            /// SEE BELOW EACH SECTION WHICH IS REFERRED AS WIDGET FOR EXAMPLE [WIDGET.TITLE]
             child: Stack(
                 fit: StackFit.loose,
                 alignment: AlignmentDirectional.topStart,
                 children: <Widget>[
-                  //BEACH - BOXTITLE//
+                  ///TITLE//
                   Positioned(
                       top: 60,
                       left: 30,
@@ -107,7 +163,8 @@ class _SectionsIndexState extends State<SectionsIndex> {
                           child: Image(
                             image: AssetImage(widget.title),
                           ))),
-                  //BEACH - CIRCLE AVATAR//
+
+                  ///CIRCLE AVATAR//
                   Positioned(
                       left: 50,
                       top: 10,
@@ -120,7 +177,8 @@ class _SectionsIndexState extends State<SectionsIndex> {
                                 radius: 45,
                                 backgroundImage: AssetImage(widget.hero))),
                       )),
-                  //BEACH - TEXT TITLE//
+
+                  ///PAGE NAME ENGLISH AND SPANISH - TEXT TITLE//
                   Positioned(
                       left: 230,
                       top: 65,
@@ -143,7 +201,8 @@ class _SectionsIndexState extends State<SectionsIndex> {
                           ],
                         ),
                       )),
-                  //BEACH - TEXT PARAMETERS TRANSFER//
+
+                  ///PAGE GENERAL - TEXT PARAMETERS TRANSFER//
                   Positioned(
                       left: 150,
                       top: 5,
